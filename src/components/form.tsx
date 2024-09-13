@@ -59,6 +59,7 @@ const Form = () => {
       <form action="" onSubmit={getWeather}>
         <div className="grid grid-cols-2 gap-4 *:py-2">
           <motion.input
+            autoComplete="off"
             placeholder="City"
             className="placeholder:text-stone-500 focus:placeholder:text-stone-400 col-span-2 bg-transparent w-full h-full border-b border-stone-500 focus:border-stone-400 duration-300 focus:outline-0"
             type="text"
@@ -66,6 +67,7 @@ const Form = () => {
             id="city"
           />
           <motion.input
+            autoComplete="off"
             placeholder="Country"
             className="placeholder:text-stone-500 focus:placeholder:text-stone-400 col-span-2 bg-transparent w-full h-full border-b border-stone-500 focus:border-stone-400 duration-300 focus:outline-0"
             type="text"
