@@ -5,6 +5,8 @@ import Error from "./error";
 
 const api_key = "a67490cc9a235310074109d4096eb9ce";
 
+let coolDown = false;
+
 const Form = () => {
   const [error, setError] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -47,15 +49,21 @@ const Form = () => {
   };
 
   const showError = () => {
-    setError(true);
-    setTimeout(() => {
-      setError(false);
-    }, 3000);
+    if (!coolDown) {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+      coolDown = true;
+      setTimeout(() => {
+        coolDown = false;
+      }, 3000);
+    }
   };
 
   return (
     <>
-      {error && <Error dismissError={dismissError} message={errorMsg} />}
+      <Error show={error} dismissError={dismissError} message={errorMsg} />
       <form action="" onSubmit={getWeather}>
         <div className="grid grid-cols-2 gap-4 *:py-2">
           <motion.input
