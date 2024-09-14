@@ -5,6 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch, SetStateAction } from "react";
 import clear from "../assets/clear.png";
+import clouds from "../assets/clouds.png";
+import drizzle from "../assets/drizzle.png";
+import rain from "../assets/rain.png";
+import snow from "../assets/snow.png";
 import humidity from "../assets/humidity.png";
 import wind from "../assets/wind.png";
 
@@ -13,11 +17,25 @@ type props = {
   setWeatherData: Dispatch<SetStateAction<weatherData | undefined>>;
 };
 
-function Forecast({ weather_data, setWeatherData }: props) {
-  console.log(
-    "http://localhost:5173/assets/" + weather_data?.type.toLowerCase() + ".png"
-  );
+const handleImage = (type: string) => {
+  switch (type.toLowerCase()) {
+    case "clear":
+      return <img src={clear} alt="" className="w-44" />;
+    case "clouds":
+      return <img src={clouds} alt="" className="w-44" />;
+    case "drizzle":
+      return <img src={drizzle} alt="" className="w-44" />;
+    case "rain":
+      return <img src={rain} alt="" className="w-44" />;
+    case "snow":
+      return <img src={snow} alt="" className="w-44" />;
 
+    default:
+      return <></>;
+  }
+};
+
+function Forecast({ weather_data, setWeatherData }: props) {
   return (
     <AnimatePresence>
       {weather_data?.show && (
@@ -43,9 +61,7 @@ function Forecast({ weather_data, setWeatherData }: props) {
           >
             <FontAwesomeIcon icon={faXmark} />
           </button>
-          <div>
-            <img src={clear} className="w-44" alt={weather_data.type} />
-          </div>
+          <div>{handleImage(weather_data.type)}</div>
 
           <div className="flex flex-col *:text-center ">
             <p className="text-6xl">{weather_data?.temp}°C</p>
