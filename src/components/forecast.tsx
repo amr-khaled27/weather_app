@@ -39,7 +39,9 @@ function Forecast({ weather_data, setWeatherData }: props) {
           <div>
             <img
               src={
-                "../assets/" + weather_data?.type.toLocaleLowerCase() + ".png"
+                "./../../src/assets/" +
+                weather_data?.type.toLowerCase() +
+                ".png"
               }
               className="w-44"
               alt={weather_data.type}
@@ -54,7 +56,11 @@ function Forecast({ weather_data, setWeatherData }: props) {
           <div className="flex justify-evenly my-12 w-full">
             <div className="flex gap-2.5">
               <div>
-                <img src="../assets/humidity.png" className="w-8 mt-2" alt="" />
+                <img
+                  src="./../../src/assets/humidity.png"
+                  className="w-8 mt-2"
+                  alt="Humidity"
+                />
               </div>
 
               <div>
@@ -66,7 +72,11 @@ function Forecast({ weather_data, setWeatherData }: props) {
             <div className="">
               <div className="flex gap-2.5">
                 <div>
-                  <img src="../assets/wind.png" className="w-8 mt-2" alt="" />
+                  <img
+                    src="./../../src/assets/wind.png"
+                    className="w-8 mt-2"
+                    alt="Wind"
+                  />
                 </div>
 
                 <div>
