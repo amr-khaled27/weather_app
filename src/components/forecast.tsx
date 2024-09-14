@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch, SetStateAction } from "react";
+import clear from "../assets/clear.png";
+import humidity from "../assets/humidity.png";
+import wind from "../assets/wind.png";
 
 type props = {
   weather_data: weatherData | undefined;
@@ -11,6 +14,10 @@ type props = {
 };
 
 function Forecast({ weather_data, setWeatherData }: props) {
+  console.log(
+    "http://localhost:5173/assets/" + weather_data?.type.toLowerCase() + ".png"
+  );
+
   return (
     <AnimatePresence>
       {weather_data?.show && (
@@ -37,15 +44,7 @@ function Forecast({ weather_data, setWeatherData }: props) {
             <FontAwesomeIcon icon={faXmark} />
           </button>
           <div>
-            <img
-              src={
-                "./../../src/assets/" +
-                weather_data?.type.toLowerCase() +
-                ".png"
-              }
-              className="w-44"
-              alt={weather_data.type}
-            />
+            <img src={clear} className="w-44" alt={weather_data.type} />
           </div>
 
           <div className="flex flex-col *:text-center ">
@@ -56,11 +55,7 @@ function Forecast({ weather_data, setWeatherData }: props) {
           <div className="flex justify-evenly my-12 w-full">
             <div className="flex gap-2.5">
               <div>
-                <img
-                  src="./../../src/assets/humidity.png"
-                  className="w-8 mt-2"
-                  alt="Humidity"
-                />
+                <img src={humidity} className="w-8 mt-2" alt="Humidity" />
               </div>
 
               <div>
@@ -72,11 +67,7 @@ function Forecast({ weather_data, setWeatherData }: props) {
             <div className="">
               <div className="flex gap-2.5">
                 <div>
-                  <img
-                    src="./../../src/assets/wind.png"
-                    className="w-8 mt-2"
-                    alt="Wind"
-                  />
+                  <img src={wind} className="w-8 mt-2" alt="Wind" />
                 </div>
 
                 <div>
