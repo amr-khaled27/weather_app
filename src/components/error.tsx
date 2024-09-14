@@ -17,7 +17,7 @@ function Error({ show, message, dismissError }: props) {
           animate={{ y: 0, opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={dismissError}
-          className="max-w-96 bg-red-500 rounded-xl text-white text-center text-lg p-2 fixed left-0 right-0 top-4 mx-auto cursor-pointer select-none"
+          className="max-w-96 bg-error z-[999] rounded-xl font-main text-txt2 text-center text-lg p-2 fixed left-0 right-0 top-4 mx-auto cursor-pointer select-none"
         >
           <p>{message}</p>
           <p className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 flex justify-center items-center transition-[300ms] rounded-full hover:bg-red-800">
