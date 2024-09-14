@@ -18,6 +18,7 @@ type props = {
 };
 
 const handleImage = (type: string) => {
+  console.log(type);
   switch (type.toLowerCase()) {
     case "clear":
       return <img src={clear} alt="" className="w-44" />;
@@ -29,6 +30,8 @@ const handleImage = (type: string) => {
       return <img src={rain} alt="" className="w-44" />;
     case "snow":
       return <img src={snow} alt="" className="w-44" />;
+    case "haze":
+      return <img src={clouds} alt="" className="w-44" />;
 
     default:
       return <></>;
