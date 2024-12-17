@@ -6,7 +6,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Error from "./error";
 import { weatherData } from "./page";
 
-const api_key = process.env.REACT_APP_API_KEY;
+// const api_key = process.env.REACT_APP_API_KEY;
 
 let coolDown = false;
 
