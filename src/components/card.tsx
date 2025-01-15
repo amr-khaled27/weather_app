@@ -5,8 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Error from "./error";
 import { weatherData } from "./page";
+import dotenv from "dotenv";
 
-// const api_key = process.env.REACT_APP_API_KEY;
+dotenv.config();
+
+const api_key = process.env.WEATHER_APP_API_KEY;
 
 let coolDown = false;
 
@@ -29,41 +32,41 @@ function Card({ setWeatherData }: props) {
   const [errorMsg, setErrorMsg] = useState<string>("");
 
   const getWeather = async (e: FormEvent<HTMLFormElement>) => {
-    // e.preventDefault();
-    // try {
-    //   const city = (
-    //     (e.target as HTMLFormElement).elements[0] as HTMLInputElement
-    //   ).value;
-    //   if (city === "") {
-    //     setErrorMsg("Search query can't be empty!");
-    //     showError();
-    //     return;
-    //   }
+    e.preventDefault();
+    try {
+      const city = (
+        (e.target as HTMLFormElement).elements[0] as HTMLInputElement
+      ).value;
+      if (city === "") {
+        setErrorMsg("Search query can't be empty!");
+        showError();
+        return;
+      }
 
-    //   const api = await fetch(
-    //     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=metric`
-    //   );
-    //   const data = await api.json();
+      const api = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=metric`
+      );
+      const data = await api.json();
 
-    //   if (data.message == "city not found") {
-    //     setErrorMsg("Cannot Find City!");
-    //     showError();
-    //     return;
-    //   }
+      if (data.message == "city not found") {
+        setErrorMsg("Cannot Find City!");
+        showError();
+        return;
+      }
 
-    //   setWeatherData({
-    //     type: data.weather[0].main,
-    //     temp: data.main.temp,
-    //     city_name: city,
-    //     humidity: data.main.humidity,
-    //     wind_speed: data.wind.speed,
-    //     show: true,
-    //   });
-    // } catch (e) {
-    //   console.log((e as DOMException).message);
-    //   setErrorMsg("Connection Error!");
-    //   showError();
-    // }
+      setWeatherData({
+        type: data.weather[0].main,
+        temp: data.main.temp,
+        city_name: city,
+        humidity: data.main.humidity,
+        wind_speed: data.wind.speed,
+        show: true,
+      });
+    } catch (e) {
+      console.log((e as DOMException).message);
+      setErrorMsg("Connection Error!");
+      showError();
+    }
   };
 
   const dismissError = () => {
