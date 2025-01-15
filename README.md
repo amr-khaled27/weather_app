@@ -1,3 +1,3 @@
 <p align="center">
-  ![swappy-20250115_204326](https://github.com/user-attachments/assets/2e11c223-6677-476c-bf08-05dae670224f)
+  <img width="460" height="300" src="https://github.com/userattachments/assets/e526b1d7-7f11-4318-b964-d85d523bc29c">
 </p>
