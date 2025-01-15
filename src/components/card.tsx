@@ -5,11 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Error from "./error";
 import { weatherData } from "./page";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const api_key = process.env.WEATHER_APP_API_KEY;
 
 let coolDown = false;
 
@@ -31,8 +26,18 @@ function Card({ setWeatherData }: props) {
   const [error, setError] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>("");
 
-  const getWeather = async (e: FormEvent<HTMLFormElement>) => {
+  const getWeather = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+    const api_key = import.meta.env.VITE_WEATHER_API_KEY;
+    if (api_key) {
+      console.log(api_key);
+    } else {
+      setErrorMsg("API key is missing!\nPlease contact the developer.");
+      showError();
+      return;
+    }
+
     e.preventDefault();
+
     try {
       const city = (
         (e.target as HTMLFormElement).elements[0] as HTMLInputElement
