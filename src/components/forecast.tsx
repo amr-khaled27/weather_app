@@ -18,7 +18,6 @@ type props = {
 };
 
 const handleImage = (type: string) => {
-  console.log(type);
   switch (type.toLowerCase()) {
     case "clear":
       return <img src={clear} alt="" className="w-44" />;
