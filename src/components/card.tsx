@@ -27,14 +27,14 @@ function Card({ setWeatherData }: props) {
   const [errorMsg, setErrorMsg] = useState<string>("");
 
   useEffect(() => {
-    if (!import.meta.env.VITE_WEATHER_API_KEY) {
+    if (!import.meta.env.WEATHER_API_KEY) {
       setErrorMsg("API Key not found!\nPlease contact the developer.");
       showError();
     }
-  }, [])
+  }, []);
 
   const getWeather = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
-    const api_key = import.meta.env.VITE_WEATHER_API_KEY;
+    const api_key = import.meta.env.WEATHER_API_KEY;
 
     e.preventDefault();
 
