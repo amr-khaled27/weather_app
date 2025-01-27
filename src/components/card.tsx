@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Dispatch, SetStateAction, useState, useEffect } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { FormEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -26,16 +26,7 @@ function Card({ setWeatherData }: props) {
   const [error, setError] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string>("");
 
-  useEffect(() => {
-    if (!import.meta.env.WEATHER_API_KEY) {
-      setErrorMsg("API Key not found!\nPlease contact the developer.");
-      showError();
-    }
-  }, []);
-
   const getWeather = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
-    const api_key = import.meta.env.WEATHER_API_KEY;
-
     e.preventDefault();
 
     try {
@@ -48,10 +39,11 @@ function Card({ setWeatherData }: props) {
         return;
       }
 
-      const api = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=metric`
-      );
+      const api = await fetch(`/.netlify/functions/fetch-weather?city=${city}`);
+
       const data = await api.json();
+
+      console.log(data);
 
       if (data.message == "city not found") {
         setErrorMsg("Cannot Find City!");
@@ -61,7 +53,7 @@ function Card({ setWeatherData }: props) {
 
       setWeatherData({
         type: data.weather[0].main,
-        temp: data.main.temp,
+        temp: parseFloat((data.main.temp - 273.15).toFixed(2)),
         city_name: city,
         humidity: data.main.humidity,
         wind_speed: data.wind.speed,
