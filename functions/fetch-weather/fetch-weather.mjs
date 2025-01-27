@@ -1,9 +1,4 @@
 // Docs on request and context https://docs.netlify.com/functions/build/#code-your-function-2
-import dotenv from "dotenv";
-import process from "node:process";
-
-dotenv.config();
-
 export default async (request, context) => {
   try {
     const url = new URL(request.url);
